@@ -1,24 +1,28 @@
-# FundMe Smart Contract
+# Foundry Fund Me
 
 A decentralized funding smart contract built with Solidity and Foundry.
 
 This project allows users to fund the contract with ETH while enforcing a minimum USD-denominated contribution using Chainlink Price Feeds. The contract tracks contributors and allows only the contract owner to withdraw funds.
 
-## About The Project
+## About
 
-This project was built as part of my Solidity and blockchain security learning journey while exploring smart contract development, deployment workflows, oracle integration, and secure key management practices.
+This project was built while learning Solidity, Foundry, smart contract development, deployment workflows, testing, and blockchain security concepts.
+
+The project includes deployment scripts, unit tests, integration tests, mock contracts, Chainlink integrations, and CI testing workflows.
 
 ## Features
 
 * Accept ETH contributions
-* Minimum USD-denominated funding requirement
+* Minimum USD funding requirement
 * Chainlink Price Feed integration
-* Owner-only withdrawal functionality
+* Owner-only withdrawals
 * Custom errors and modifiers
 * Fallback and receive functions
-* Deployment using Foundry scripts
-* Local testing with Anvil
-* Testnet deployment support
+* Foundry deployment scripts
+* Unit and integration testing
+* Local Anvil deployment
+* Sepolia deployment support
+* GitHub Actions automated testing
 
 ## Technologies Used
 
@@ -26,29 +30,35 @@ This project was built as part of my Solidity and blockchain security learning j
 * Foundry
 * Anvil
 * Chainlink Price Feeds
+* Foundry DevOps
 * Alchemy RPC
 * Sepolia Testnet
 * Git & GitHub
+* GitHub Actions
 * WSL
 
-## Contract Overview
+## Project Structure
 
-### FundMe.sol
+```text
+src/
+├── FundMe.sol
+├── PriceConverter.sol
 
-Main funding contract that:
+script/
+├── DeployFundMe.s.sol
+├── DeployStorageFun.s.sol
+├── HelperConfig.s.sol
+├── Interactions.s.sol
 
-* Accepts ETH contributions
-* Tracks funders and contribution amounts
-* Validates minimum contribution value in USD
-* Restricts withdrawals to the contract owner
-
-### PriceConverter.sol
-
-Library used to:
-
-* Fetch ETH/USD prices through Chainlink
-* Convert ETH amounts into USD values
-* Support funding validation logic
+test/
+├── FundMeTest.t.sol
+├── FundMeDeploy.t.sol
+├── integration/
+│   └── InteractionsTest.t.sol
+├── mock/
+│   └── MockV3Aggregator.sol
+├── ZkSyncDevOps.t.sol
+```
 
 ## What I Learned
 
@@ -56,50 +66,28 @@ Through this project I gained hands-on experience with:
 
 * Solidity smart contract development
 * Foundry development workflow
-* Local blockchain testing using Anvil
-* Deploying contracts through Forge scripts
-* Transaction broadcasting and on-chain execution
+* Local blockchain testing with Anvil
+* Smart contract deployment using Forge scripts
+* Chainlink oracle integration
+* Unit and integration testing
 * Environment variable management
 * Private key security practices
-* Chainlink oracle integration
-* Smart contract project structure
-* Basic Layer 2 and Foundry zkSync workflows
-
-## Project Structure
-
-src/
-
-* FundMe.sol
-* PriceConverter.sol
-
-script/
-
-* DeployFundMe.s.sol
-* Interactions.s.sol
-
-test/
-
-* FundMeTest.t.sol
+* Transaction broadcasting and on-chain execution
+* Git and GitHub workflows
+* Basic Layer 2 and Foundry zkSync development concepts
 
 ## Requirements
 
 * Git
 * Foundry
 * Alchemy RPC URL
-* Sepolia testnet ETH (optional for deployment)
+* Testnet ETH (for deployment)
 
 ## Installation
 
-Clone the repository:
-
 ```bash
-git clone https://github.com/Nandini99-git/Foundry-Fund-Me
-cd fundme
-```
-
-Install dependencies:
-
-```bash
+git clone https://github.com/Nandini99-git/Foundry-Fund-Me.git
+cd Foundry-Fund-Me
 forge install
 ```
 
@@ -111,6 +99,12 @@ Run all tests:
 forge test
 ```
 
+Generate gas report:
+
+```bash
+forge snapshot
+```
+
 Generate coverage:
 
 ```bash
@@ -119,10 +113,15 @@ forge coverage
 
 ## Deployment
 
-Deploy locally using Anvil:
+Start a local Anvil node:
 
 ```bash
 anvil
+```
+
+Deploy locally:
+
+```bash
 forge script script/DeployFundMe.s.sol
 ```
 
@@ -135,14 +134,14 @@ forge script script/DeployFundMe.s.sol \
 --broadcast
 ```
 
-## Future Improvements
+## Future Goals
 
-* Additional security-focused testing
-* Expanded integration tests
-* Gas optimization
-* Support for multiple funding assets
-* Further smart contract security analysis
+* Explore smart contract security testing
+* Learn vulnerability analysis and auditing techniques
+* Improve gas optimization knowledge
+* Deploy additional projects to testnets
+* Continue learning Layer 2 ecosystems and blockchain security
 
 ## Disclaimer
 
-This project was built for educational and learning purposes while studying Solidity, Foundry, blockchain security, and smart contract development.
+This repository was created for educational purposes as part of my Solidity, Foundry, and blockchain security learning journey.
