@@ -93,7 +93,7 @@ test/
 Clone the repository:
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/Nandini99-git/Foundry-Fund-Me
 cd fundme
 ```
 
