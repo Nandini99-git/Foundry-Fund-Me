@@ -1,66 +1,148 @@
-## Foundry
+# FundMe Smart Contract
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+A decentralized funding smart contract built with Solidity and Foundry.
 
-Foundry consists of:
+This project allows users to fund the contract with ETH while enforcing a minimum USD-denominated contribution using Chainlink Price Feeds. The contract tracks contributors and allows only the contract owner to withdraw funds.
 
-- **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
-- **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
-- **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
-- **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+## About The Project
 
-## Documentation
+This project was built as part of my Solidity and blockchain security learning journey while exploring smart contract development, deployment workflows, oracle integration, and secure key management practices.
 
-https://book.getfoundry.sh/
+## Features
 
-## Usage
+* Accept ETH contributions
+* Minimum USD-denominated funding requirement
+* Chainlink Price Feed integration
+* Owner-only withdrawal functionality
+* Custom errors and modifiers
+* Fallback and receive functions
+* Deployment using Foundry scripts
+* Local testing with Anvil
+* Testnet deployment support
 
-### Build
+## Technologies Used
 
-```shell
-$ forge build
+* Solidity
+* Foundry
+* Anvil
+* Chainlink Price Feeds
+* Alchemy RPC
+* Sepolia Testnet
+* Git & GitHub
+* WSL
+
+## Contract Overview
+
+### FundMe.sol
+
+Main funding contract that:
+
+* Accepts ETH contributions
+* Tracks funders and contribution amounts
+* Validates minimum contribution value in USD
+* Restricts withdrawals to the contract owner
+
+### PriceConverter.sol
+
+Library used to:
+
+* Fetch ETH/USD prices through Chainlink
+* Convert ETH amounts into USD values
+* Support funding validation logic
+
+## What I Learned
+
+Through this project I gained hands-on experience with:
+
+* Solidity smart contract development
+* Foundry development workflow
+* Local blockchain testing using Anvil
+* Deploying contracts through Forge scripts
+* Transaction broadcasting and on-chain execution
+* Environment variable management
+* Private key security practices
+* Chainlink oracle integration
+* Smart contract project structure
+* Basic Layer 2 and Foundry zkSync workflows
+
+## Project Structure
+
+src/
+
+* FundMe.sol
+* PriceConverter.sol
+
+script/
+
+* DeployFundMe.s.sol
+* Interactions.s.sol
+
+test/
+
+* FundMeTest.t.sol
+
+## Requirements
+
+* Git
+* Foundry
+* Alchemy RPC URL
+* Sepolia testnet ETH (optional for deployment)
+
+## Installation
+
+Clone the repository:
+
+```bash
+git clone <repository-url>
+cd fundme
 ```
 
-### Test
+Install dependencies:
 
-```shell
-$ forge test
+```bash
+forge install
 ```
 
-### Format
+## Testing
 
-```shell
-$ forge fmt
+Run all tests:
+
+```bash
+forge test
 ```
 
-### Gas Snapshots
+Generate coverage:
 
-```shell
-$ forge snapshot
+```bash
+forge coverage
 ```
 
-### Anvil
+## Deployment
 
-```shell
-$ anvil
+Deploy locally using Anvil:
+
+```bash
+anvil
+forge script script/DeployFundMe.s.sol
 ```
 
-### Deploy
+Deploy to Sepolia:
 
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
+```bash
+forge script script/DeployFundMe.s.sol \
+--rpc-url $SEPOLIA_RPC_URL \
+--private-key $PRIVATE_KEY \
+--broadcast
 ```
 
-### Cast
+## Future Improvements
 
-```shell
-$ cast <subcommand>
-```
+* Additional security-focused testing
+* Expanded integration tests
+* Gas optimization
+* Support for multiple funding assets
+* Further smart contract security analysis
 
-### Help
+## Disclaimer
 
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+This project was built for educational and learning purposes while studying Solidity, Foundry, blockchain security, and smart contract development.
